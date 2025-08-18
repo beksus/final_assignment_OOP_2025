@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ScrollPane fitToWidth="true">
+         <content>
+            <VBox spacing="25.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <!-- Header -->
+                  <Label text="Notifications &amp; Reminders" styleClass="page-title">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  
+                  <!-- Meal Reminders Section -->
+                  <VBox spacing="15.0" styleClass="notification-section">
+                     <children>
+                        <Label text="Meal Reminders" styleClass="section-title">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <VBox spacing="12.0">
+                           <children>
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="breakfastReminderCheck" text="Breakfast Reminder" />
+                                    <Label text="Time:" />
+                                    <TextField fx:id="breakfastTimeField" text="08:00" prefWidth="80.0" />
+                                    <Button fx:id="testBreakfastBtn" text="Test" onAction="#testBreakfastReminder" />
+                                 </children>
+                              </HBox>
+                              
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="lunchReminderCheck" text="Lunch Reminder" />
+                                    <Label text="Time:" />
+                                    <TextField fx:id="lunchTimeField" text="12:30" prefWidth="80.0" />
+                                    <Button fx:id="testLunchBtn" text="Test" onAction="#testLunchReminder" />
+                                 </children>
+                              </HBox>
+                              
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="dinnerReminderCheck" text="Dinner Reminder" />
+                                    <Label text="Time:" />
+                                    <TextField fx:id="dinnerTimeField" text="19:00" prefWidth="80.0" />
+                                    <Button fx:id="testDinnerBtn" text="Test" onAction="#testDinnerReminder" />
+                                 </children>
+                              </HBox>
+                              
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="snackReminderCheck" text="Healthy Snack Reminder" />
+                                    <Label text="Time:" />
+                                    <TextField fx:id="snackTimeField" text="15:30" prefWidth="80.0" />
+                                    <Button fx:id="testSnackBtn" text="Test" onAction="#testSnackReminder" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Water Reminders Section -->
+                  <VBox spacing="15.0" styleClass="notification-section">
+                     <children>
+                        <Label text="Water &amp; Hydration" styleClass="section-title">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <VBox spacing="12.0">
+                           <children>
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="waterReminderCheck" text="Water Reminder" />
+                                    <Label text="Every:" />
+                                    <Spinner fx:id="waterIntervalSpinner" initialValue="60" min="15" max="180" editable="true" prefWidth="100.0" />
+                                    <Label text="minutes" />
+                                 </children>
+                              </HBox>
+                              
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="hydrationGoalCheck" text="Daily Hydration Goal Alert" />
+                                    <Label text="Alert when below:" />
+                                    <Spinner fx:id="hydrationThresholdSpinner" initialValue="75" min="25" max="95" editable="true" prefWidth="100.0" />
+                                    <Label text="%" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Goal Alerts Section -->
+                  <VBox spacing="15.0" styleClass="notification-section">
+                     <children>
+                        <Label text="Goal Alerts" styleClass="section-title">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <VBox spacing="12.0">
+                           <children>
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="calorieGoalCheck" text="Daily Calorie Goal Alerts" />
+                                    <VBox spacing="5.0">
+                                       <children>
+                                          <CheckBox fx:id="calorieWarningCheck" text="Warn when exceeding goal" />
+                                          <CheckBox fx:id="calorieMotivationCheck" text="Motivate when under goal" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="exerciseGoalCheck" text="Exercise Goal Alerts" />
+                                    <VBox spacing="5.0">
+                                       <children>
+                                          <CheckBox fx:id="exerciseReminderCheck" text="Daily exercise reminder" />
+                                          <CheckBox fx:id="inactivityCheck" text="Inactivity alert (sedentary warning)" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                              
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="weightGoalCheck" text="Weight Goal Progress" />
+                                    <VBox spacing="5.0">
+                                       <children>
+                                          <CheckBox fx:id="weeklyWeighInCheck" text="Weekly weigh-in reminder" />
+                                          <CheckBox fx:id="milestoneCheck" text="Milestone achievement alerts" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Custom Reminders Section -->
+                  <VBox spacing="15.0" styleClass="notification-section">
+                     <children>
+                        <Label text="Custom Reminders" styleClass="section-title">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <VBox spacing="10.0">
+                           <children>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="customReminderText" promptText="Enter custom reminder..." prefWidth="300.0" />
+                                    <TextField fx:id="customReminderTime" promptText="HH:MM" prefWidth="80.0" />
+                                    <ComboBox fx:id="customFrequencyCombo" prefWidth="120.0" />
+                                    <Button fx:id="addCustomReminderBtn" text="Add" onAction="#addCustomReminder" />
+                                 </children>
+                              </HBox>
+                              
+                              <ListView fx:id="customRemindersList" prefHeight="120.0" />
+                              
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <Button fx:id="editCustomReminderBtn" text="Edit Selected" onAction="#editCustomReminder" />
+                                    <Button fx:id="deleteCustomReminderBtn" text="Delete Selected" onAction="#deleteCustomReminder" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Notification Settings Section -->
+                  <VBox spacing="15.0" styleClass="notification-section">
+                     <children>
+                        <Label text="Notification Settings" styleClass="section-title">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <VBox spacing="12.0">
+                           <children>
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <Label text="Notification Type:" />
+                                    <ComboBox fx:id="notificationTypeCombo" prefWidth="180.0" />
+                                 </children>
+                              </HBox>
+                              
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <Label text="Sound:" />
+                                    <ComboBox fx:id="notificationSoundCombo" prefWidth="180.0" />
+                                    <Button fx:id="playSoundBtn" text="🔊 Preview" onAction="#previewSound" />
+                                 </children>
+                              </HBox>
+                              
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="doNotDisturbCheck" text="Do Not Disturb Mode" />
+                                    <Label text="From:" />
+                                    <TextField fx:id="dndStartField" text="22:00" prefWidth="80.0" />
+                                    <Label text="To:" />
+                                    <TextField fx:id="dndEndField" text="07:00" prefWidth="80.0" />
+                                 </children>
+                              </HBox>
+                              
+                              <HBox spacing="15.0">
+                                 <children>
+                                    <CheckBox fx:id="weekendModeCheck" text="Reduced weekend notifications" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Action Buttons -->
+                  <HBox spacing="15.0">
+                     <children>
+                        <Button fx:id="saveSettingsBtn" text="Save All Settings" onAction="#saveNotificationSettings" styleClass="primary-button" />
+                        <Button fx:id="resetSettingsBtn" text="Reset to Defaults" onAction="#resetToDefaults" />
+                        <Button fx:id="testAllBtn" text="Test All Notifications" onAction="#testAllNotifications" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

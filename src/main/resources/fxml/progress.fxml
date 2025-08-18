@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ScrollPane fitToWidth="true">
+         <content>
+            <VBox spacing="20.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <!-- Header -->
+                  <HBox>
+                     <children>
+                        <Label text="Progress &amp; History" styleClass="page-title">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <ComboBox fx:id="timeRangeCombo" onAction="#updateCharts" />
+                     </children>
+                  </HBox>
+                  
+                  <!-- Summary Stats -->
+                  <HBox spacing="20.0">
+                     <children>
+                        <!-- Weight Progress Card -->
+                        <VBox styleClass="stat-card" prefWidth="250.0">
+                           <children>
+                              <Label text="Weight Progress" styleClass="card-title" />
+                              <Label fx:id="currentWeightLabel" text="80.0 kg" styleClass="big-stat">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="weightChangeLabel" text="-2.5 kg this month" styleClass="stat-detail" />
+                              <Label fx:id="weightToGoLabel" text="2.5 kg to goal" styleClass="stat-detail" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        
+                        <!-- Calorie Streak Card -->
+                        <VBox styleClass="stat-card" prefWidth="250.0">
+                           <children>
+                              <Label text="Calorie Goal Streak" styleClass="card-title" />
+                              <Label fx:id="streakLabel" text="12 days" styleClass="big-stat">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="streakDetail" text="Best streak: 18 days" styleClass="stat-detail" />
+                              <Label fx:id="streakPercent" text="85% success rate" styleClass="stat-detail" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        
+                        <!-- Average Intake Card -->
+                        <VBox styleClass="stat-card" prefWidth="250.0">
+                           <children>
+                              <Label text="Avg Daily Intake" styleClass="card-title" />
+                              <Label fx:id="avgCaloriesLabel" text="2,150" styleClass="big-stat">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="avgDetail" text="Goal: 2,200 calories" styleClass="stat-detail" />
+                              <Label fx:id="avgMacros" text="P: 118g | C: 265g | F: 78g" styleClass="stat-detail" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Charts Row 1 -->
+                  <HBox spacing="20.0">
+                     <children>
+                        <!-- Weight Progress Chart -->
+                        <VBox prefWidth="600.0">
+                           <children>
+                              <Label text="Weight Progress" styleClass="section-title">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <LineChart fx:id="weightChart" prefHeight="300.0">
+                                 <xAxis>
+                                    <CategoryAxis fx:id="weightXAxis" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis fx:id="weightYAxis" />
+                                 </yAxis>
+                              </LineChart>
+                           </children>
+                        </VBox>
+                        
+                        <!-- BMI Progress -->
+                        <VBox prefWidth="300.0">
+                           <children>
+                              <Label text="BMI Progress" styleClass="section-title">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <VBox spacing="10.0" alignment="CENTER" prefHeight="300.0">
+                                 <children>
+                                    <Label fx:id="currentBMILabel" text="26.1" styleClass="bmi-value">
+                                       <font>
+                                          <Font size="36.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="bmiCategoryLabel" text="Overweight" styleClass="bmi-category" />
+                                    <ProgressBar fx:id="bmiProgress" progress="0.6" prefWidth="200.0" />
+                                    <Label text="Target: Normal (18.5-25.0)" styleClass="stat-detail" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Charts Row 2 -->
+                  <HBox spacing="20.0">
+                     <children>
+                        <!-- Calorie Intake vs Burn -->
+                        <VBox prefWidth="600.0">
+                           <children>
+                              <Label text="Calories: Intake vs Burn" styleClass="section-title">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <LineChart fx:id="calorieChart" prefHeight="300.0">
+                                 <xAxis>
+                                    <CategoryAxis fx:id="calorieXAxis" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis fx:id="calorieYAxis" />
+                                 </yAxis>
+                              </LineChart>
+                           </children>
+                        </VBox>
+                        
+                        <!-- Macro Breakdown Trend -->
+                        <VBox prefWidth="300.0">
+                           <children>
+                              <Label text="Macro Trends (Last 7 Days)" styleClass="section-title">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <StackedAreaChart fx:id="macroTrendChart" prefHeight="300.0">
+                                 <xAxis>
+                                    <CategoryAxis fx:id="macroXAxis" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis fx:id="macroYAxis" />
+                                 </yAxis>
+                              </StackedAreaChart>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Activity Progress -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label text="Activity Progress" styleClass="section-title">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        
+                        <HBox spacing="20.0">
+                           <children>
+                              <!-- Steps Progress -->
+                              <VBox prefWidth="300.0">
+                                 <children>
+                                    <Label text="Daily Steps" styleClass="subsection-title">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <BarChart fx:id="stepsChart" prefHeight="200.0">
+                                       <xAxis>
+                                          <CategoryAxis fx:id="stepsXAxis" />
+                                       </xAxis>
+                                       <yAxis>
+                                          <NumberAxis fx:id="stepsYAxis" />
+                                       </yAxis>
+                                    </BarChart>
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Workout Frequency -->
+                              <VBox prefWidth="300.0">
+                                 <children>
+                                    <Label text="Workout Frequency" styleClass="subsection-title">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <PieChart fx:id="workoutChart" prefHeight="200.0" />
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Achievements -->
+                              <VBox prefWidth="250.0">
+                                 <children>
+                                    <Label text="Recent Achievements" styleClass="subsection-title">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="achievementsList" prefHeight="200.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Detailed Stats Table -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label text="Detailed History" styleClass="section-title">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button fx:id="exportDataBtn" text="Export Data" onAction="#exportData" />
+                           </children>
+                        </HBox>
+                        
+                        <TableView fx:id="historyTable" prefHeight="250.0">
+                           <columns>
+                              <TableColumn fx:id="dateColumn" text="Date" prefWidth="100.0" />
+                              <TableColumn fx:id="weightColumn" text="Weight (kg)" prefWidth="100.0" />
+                              <TableColumn fx:id="caloriesColumn" text="Calories" prefWidth="100.0" />
+                              <TableColumn fx:id="proteinColumn" text="Protein (g)" prefWidth="100.0" />
+                              <TableColumn fx:id="fatColumn" text="Fat (g)" prefWidth="100.0" />
+                              <TableColumn fx:id="carbsColumn" text="Carbs (g)" prefWidth="100.0" />
+                              <TableColumn fx:id="stepsColumn" text="Steps" prefWidth="100.0" />
+                              <TableColumn fx:id="waterColumn" text="Water (L)" prefWidth="100.0" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

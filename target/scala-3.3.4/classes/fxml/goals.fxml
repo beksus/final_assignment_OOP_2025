@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ScrollPane fitToWidth="true">
+         <content>
+            <VBox spacing="25.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <!-- Header -->
+                  <Label text="Goals &amp; Targets" styleClass="page-title">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  
+                  <!-- Weight Goals Section -->
+                  <VBox spacing="15.0" styleClass="goals-section">
+                     <children>
+                        <Label text="Weight Goals" styleClass="section-title">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <GridPane hgap="15.0" vgap="15.0" maxWidth="600.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="NEVER" minWidth="150.0" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <children>
+                              <Label text="Current Weight:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                 <children>
+                                    <TextField fx:id="currentWeightField" prefWidth="100.0" />
+                                    <Label text="kg" />
+                                 </children>
+                              </HBox>
+                              
+                              <Label text="Goal:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="weightGoalCombo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              
+                              <Label text="Target Weight:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField fx:id="targetWeightField" prefWidth="100.0" />
+                                    <Label text="kg" />
+                                 </children>
+                              </HBox>
+                              
+                              <Label text="Target Date:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                              <DatePicker fx:id="targetDatePicker" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                              
+                              <Label text="Weekly Goal:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="weeklyGoalField" prefWidth="100.0" />
+                                    <Label text="kg per week" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        
+                        <HBox spacing="15.0">
+                           <children>
+                              <Button fx:id="saveWeightGoalsBtn" text="Save Weight Goals" onAction="#saveWeightGoals" />
+                              <Button fx:id="calculateGoalsBtn" text="Auto Calculate" onAction="#calculateWeightGoals" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Calorie Goals Section -->
+                  <VBox spacing="15.0" styleClass="goals-section">
+                     <children>
+                        <Label text="Daily Calorie Goals" styleClass="section-title">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <GridPane hgap="15.0" vgap="15.0" maxWidth="600.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="NEVER" minWidth="150.0" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <children>
+                              <Label text="Daily Calorie Goal:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                 <children>
+                                    <TextField fx:id="calorieGoalField" prefWidth="100.0" />
+                                    <Label text="calories" />
+                                 </children>
+                              </HBox>
+                              
+                              <Label text="BMR:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                              <Label fx:id="bmrLabel" text="1,650 calories/day" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              
+                              <Label text="TDEE:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                              <Label fx:id="tdeeLabel" text="2,200 calories/day" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                              
+                              <Label text="Recommended:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                              <Label fx:id="recommendedLabel" text="2,000 calories/day" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                           </children>
+                        </GridPane>
+                        
+                        <Button fx:id="calculateCaloriesBtn" text="Calculate Recommended Calories" onAction="#calculateCalorieGoal" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Macro Goals Section -->
+                  <VBox spacing="15.0" styleClass="goals-section">
+                     <children>
+                        <Label text="Macronutrient Goals" styleClass="section-title">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <VBox spacing="20.0">
+                           <children>
+                              <!-- Protein -->
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Label text="Protein:" prefWidth="80.0" />
+                                          <Slider fx:id="proteinSlider" min="10.0" max="40.0" value="20.0" prefWidth="200.0" />
+                                          <Label fx:id="proteinPercentLabel" text="20%" prefWidth="50.0" />
+                                          <Label fx:id="proteinGramsLabel" text="(110g)" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Carbs -->
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Label text="Carbs:" prefWidth="80.0" />
+                                          <Slider fx:id="carbsSlider" min="20.0" max="70.0" value="50.0" prefWidth="200.0" />
+                                          <Label fx:id="carbsPercentLabel" text="50%" prefWidth="50.0" />
+                                          <Label fx:id="carbsGramsLabel" text="(275g)" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Fat -->
+                              <VBox spacing="5.0">
+                                 <children>
+                                    <HBox spacing="10.0">
+                                       <children>
+                                          <Label text="Fat:" prefWidth="80.0" />
+                                          <Slider fx:id="fatSlider" min="15.0" max="50.0" value="30.0" prefWidth="200.0" />
+                                          <Label fx:id="fatPercentLabel" text="30%" prefWidth="50.0" />
+                                          <Label fx:id="fatGramsLabel" text="(73g)" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                        
+                        <HBox spacing="15.0">
+                           <children>
+                              <Label fx:id="macroTotalLabel" text="Total: 100%" />
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button fx:id="resetMacrosBtn" text="Reset to Default" onAction="#resetMacros" />
+                              <Button fx:id="saveMacrosBtn" text="Save Macros" onAction="#saveMacros" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Other Goals Section -->
+                  <VBox spacing="15.0" styleClass="goals-section">
+                     <children>
+                        <Label text="Other Daily Goals" styleClass="section-title">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <GridPane hgap="15.0" vgap="15.0" maxWidth="600.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="NEVER" minWidth="150.0" />
+                              <ColumnConstraints hgrow="ALWAYS" />
+                           </columnConstraints>
+                           <children>
+                              <Label text="Water Intake:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                 <children>
+                                    <TextField fx:id="waterGoalField" prefWidth="100.0" />
+                                    <Label text="liters" />
+                                 </children>
+                              </HBox>
+                              
+                              <Label text="Steps Goal:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <TextField fx:id="stepsGoalField" prefWidth="100.0" />
+                                    <Label text="steps" />
+                                 </children>
+                              </HBox>
+                              
+                              <Label text="Active Minutes:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField fx:id="activeMinutesField" prefWidth="100.0" />
+                                    <Label text="minutes" />
+                                 </children>
+                              </HBox>
+                              
+                              <Label text="Sleep Goal:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                              <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="sleepGoalField" prefWidth="100.0" />
+                                    <Label text="hours" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </GridPane>
+                        
+                        <Button fx:id="saveOtherGoalsBtn" text="Save Other Goals" onAction="#saveOtherGoals" />
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+                  
+                  <!-- Quick Presets -->
+                  <VBox spacing="15.0" styleClass="goals-section">
+                     <children>
+                        <Label text="Quick Goal Presets" styleClass="section-title">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        
+                        <HBox spacing="15.0">
+                           <children>
+                              <Button fx:id="weightLossBtn" text="Weight Loss" onAction="#applyWeightLossPreset" />
+                              <Button fx:id="maintenanceBtn" text="Maintenance" onAction="#applyMaintenancePreset" />
+                              <Button fx:id="muscleGainBtn" text="Muscle Gain" onAction="#applyMuscleGainPreset" />
+                              <Button fx:id="athleteBtn" text="Athlete" onAction="#applyAthletePreset" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

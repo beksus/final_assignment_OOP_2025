@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <ScrollPane fitToWidth="true">
+         <content>
+            <VBox spacing="20.0">
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+               <children>
+                  <!-- Header -->
+                  <Label text="Activity Tracking" styleClass="page-title">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  
+                  <!-- Quick Stats Row -->
+                  <HBox spacing="20.0">
+                     <children>
+                        <!-- Steps Card -->
+                        <VBox styleClass="stat-card" prefWidth="200.0">
+                           <children>
+                              <Label text="Steps Today" styleClass="card-title" />
+                              <Label fx:id="stepsLabel" text="8,542" styleClass="big-stat">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="stepsGoal" text="Goal: 10,000" styleClass="stat-detail" />
+                              <ProgressBar fx:id="stepsProgress" progress="0.85" prefWidth="150.0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        
+                        <!-- Distance Card -->
+                        <VBox styleClass="stat-card" prefWidth="200.0">
+                           <children>
+                              <Label text="Distance" styleClass="card-title" />
+                              <Label fx:id="distanceLabel" text="6.8 km" styleClass="big-stat">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="distanceDetail" text="Running + Walking" styleClass="stat-detail" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        
+                        <!-- Heart Rate Card -->
+                        <VBox styleClass="stat-card" prefWidth="200.0">
+                           <children>
+                              <Label text="Avg Heart Rate" styleClass="card-title" />
+                              <Label fx:id="heartRateLabel" text="78 bpm" styleClass="big-stat">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="heartRateZone" text="Fat Burn Zone" styleClass="stat-detail" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                        
+                        <!-- Active Minutes Card -->
+                        <VBox styleClass="stat-card" prefWidth="200.0">
+                           <children>
+                              <Label text="Active Minutes" styleClass="card-title" />
+                              <Label fx:id="activeMinutesLabel" text="45 min" styleClass="big-stat">
+                                 <font>
+                                    <Font size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="activeGoal" text="Goal: 30 min" styleClass="stat-detail" />
+                              <ProgressBar fx:id="activeProgress" progress="1.0" prefWidth="150.0" />
+                           </children>
+                           <padding>
+                              <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  
+                  <!-- Add Workout Section -->
+                  <VBox spacing="15.0">
+                     <children>
+                        <Label text="Log Workout" styleClass="section-title">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        
+                        <HBox spacing="20.0">
+                           <children>
+                              <!-- Manual Workout Entry -->
+                              <VBox spacing="10.0" prefWidth="400.0">
+                                 <children>
+                                    <Label text="Manual Entry" styleClass="subsection-title">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <GridPane hgap="10.0" vgap="10.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="NEVER" minWidth="100.0" />
+                                          <ColumnConstraints hgrow="ALWAYS" />
+                                       </columnConstraints>
+                                       <children>
+                                          <Label text="Exercise:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                          <ComboBox fx:id="exerciseCombo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                          
+                                          <Label text="Duration (min):" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                          <TextField fx:id="durationField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          
+                                          <Label text="Intensity:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                          <ComboBox fx:id="intensityCombo" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          
+                                          <Label text="Calories Burned:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                                          <TextField fx:id="caloriesField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                       </children>
+                                    </GridPane>
+                                    <Button fx:id="addWorkoutBtn" text="Add Workout" onAction="#addWorkout" maxWidth="150.0" />
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Device Integration -->
+                              <VBox spacing="10.0" prefWidth="300.0">
+                                 <children>
+                                    <Label text="Device Integration" styleClass="subsection-title">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <VBox spacing="8.0">
+                                       <children>
+                                          <HBox spacing="10.0">
+                                             <children>
+                                                <Label text="Fitbit:" />
+                                                <Button fx:id="syncFitbitBtn" text="Sync Now" onAction="#syncFitbit" />
+                                                <Label fx:id="fitbitStatus" text="Connected" styleClass="status-connected" />
+                                             </children>
+                                          </HBox>
+                                          
+                                          <HBox spacing="10.0">
+                                             <children>
+                                                <Label text="Apple Watch:" />
+                                                <Button fx:id="syncAppleBtn" text="Sync Now" onAction="#syncAppleWatch" />
+                                                <Label fx:id="appleStatus" text="Not Connected" styleClass="status-disconnected" />
+                                             </children>
+                                          </HBox>
+                                          
+                                          <HBox spacing="10.0">
+                                             <children>
+                                                <Label text="Google Fit:" />
+                                                <Button fx:id="syncGoogleBtn" text="Sync Now" onAction="#syncGoogleFit" />
+                                                <Label fx:id="googleStatus" text="Connected" styleClass="status-connected" />
+                                             </children>
+                                          </HBox>
+                                          
+                                          <HBox spacing="10.0">
+                                             <children>
+                                                <Label text="Strava:" />
+                                                <Button fx:id="syncStravaBtn" text="Sync Now" onAction="#syncStrava" />
+                                                <Label fx:id="stravaStatus" text="Not Connected" styleClass="status-disconnected" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Calorie Burn Chart -->
+                  <VBox spacing="10.0">
+                     <children>
+                        <HBox spacing="20.0">
+                           <children>
+                              <Label text="Calories Burned" styleClass="section-title">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox fx:id="chartPeriodCombo" onAction="#updateChart" />
+                           </children>
+                        </HBox>
+                        
+                        <BarChart fx:id="calorieChart" prefHeight="300.0">
+                           <xAxis>
+                              <CategoryAxis fx:id="chartXAxis" />
+                           </xAxis>
+                           <yAxis>
+                              <NumberAxis fx:id="chartYAxis" />
+                           </yAxis>
+                        </BarChart>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Today's Activities -->
+                  <VBox spacing="10.0">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label text="Today's Activities" styleClass="section-title">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <Button fx:id="clearActivitiesBtn" text="Clear All" onAction="#clearActivities" />
+                           </children>
+                        </HBox>
+                        
+                        <TableView fx:id="activitiesTable" prefHeight="200.0">
+                           <columns>
+                              <TableColumn fx:id="activityNameCol" text="Activity" prefWidth="150.0" />
+                              <TableColumn fx:id="activityDurationCol" text="Duration" prefWidth="100.0" />
+                              <TableColumn fx:id="activityCaloriesCol" text="Calories" prefWidth="100.0" />
+                              <TableColumn fx:id="activityTimeCol" text="Time" prefWidth="100.0" />
+                           </columns>
+                        </TableView>
+                        
+                        <HBox>
+                           <children>
+                              <Label fx:id="totalCaloriesLabel" text="Total Calories Burned Today: 450" styleClass="total-stats">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

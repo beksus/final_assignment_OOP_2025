@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <option name="separateProdTestSources" value="true" />
+    <profile name="sbt 1" modules="CalorieTrackerPro,CalorieTrackerPro.main,CalorieTrackerPro.test,final_assignment_oop_2025_4401,final_assignment_oop_2025_4401.main,final_assignment_oop_2025_4401.test" />
+  </component>
+</project>

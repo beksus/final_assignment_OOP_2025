@@ -1,3 +1,5 @@
+package models
+
 abstract class FoodItem(val name: String):
   def calories: Int
   def protein: Double

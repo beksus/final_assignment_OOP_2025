@@ -1,3 +1,6 @@
+package utils
+
+import models.*
 import scala.io.Source
 import java.io.{FileWriter, BufferedWriter, File}
 import java.time.LocalDate

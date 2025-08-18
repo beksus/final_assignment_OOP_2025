@@ -1,3 +1,5 @@
+package models
+
 class MealLog:
   private var items: List[FoodItem] = List()
 
