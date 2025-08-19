@@ -1,4 +1,4 @@
-package models
+package controller
 
 abstract class FoodItem(val name: String):
   def calories: Int
@@ -13,7 +13,7 @@ class SimpleFood(
                   val fatVal: Double,
                   val carbVal: Double
                 ) extends FoodItem(name):
-  def calories = cal
-  def protein = pro
-  def fat = fatVal
-  def carbs = carbVal
+  def calories: Int = cal
+  def protein: Double = pro
+  def fat: Double = fatVal
+  def carbs: Double = carbVal

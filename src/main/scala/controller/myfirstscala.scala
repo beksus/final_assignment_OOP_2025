@@ -1,13 +1,17 @@
+package controller
+
+import controller.myfirstscala.stage
+import controller.{FileUtil, SimpleFood}
 import scalafx.application.JFXApp3
 import scalafx.application.JFXApp3.PrimaryStage
+import scalafx.beans.property.{ObjectProperty, StringProperty}
+import scalafx.collections.ObservableBuffer
+import scalafx.geometry.Insets
 import scalafx.scene.Scene
 import scalafx.scene.control.*
 import scalafx.scene.layout.*
-import scalafx.collections.ObservableBuffer
-import scalafx.geometry.Insets
-import scalafx.beans.property.{StringProperty, ObjectProperty}
 
-object MyApp extends JFXApp3:
+object myfirstscala extends JFXApp3:
 
   override def start(): Unit =
 
@@ -105,4 +109,4 @@ object MyApp extends JFXApp3:
           padding = Insets(15)
           children = Seq(leftPane, rightPane)
 
-end MyApp
+end myfirstscala

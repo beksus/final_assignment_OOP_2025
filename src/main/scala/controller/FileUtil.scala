@@ -1,10 +1,11 @@
-package utils
+package controller
 
-import models.*
-import scala.io.Source
-import java.io.{FileWriter, BufferedWriter, File}
-import java.time.LocalDate
+import controller.FileUtil.getClass
+
+import java.io.{BufferedWriter, File, FileWriter}
 import java.nio.charset.StandardCharsets
+import java.time.LocalDate
+import scala.io.Source
 
 object FileUtil:
 
@@ -23,12 +24,18 @@ object FileUtil:
 
   // Writes to normal writable path (NOT resources)
   def appendMealLog(path: String, food: FoodItem): Unit =
-    val bw = new BufferedWriter(new FileWriter(path, true))
-    val today = LocalDate.now()
-    val line = s"$today,${food.name},${food.calories},${food.protein},${food.fat},${food.carbs}"
-    bw.write(line)
-    bw.newLine()
-    bw.close()
+    val file = new File(path)
+    val bw = new BufferedWriter(new FileWriter(file, true))
+    try
+      if !file.exists() || file.length() == 0 then
+        bw.write("date,food_name,calories,protein,fat,carbs")
+        bw.newLine()
+      val today = LocalDate.now()
+      val line = s"$today,${food.name},${food.calories},${food.protein},${food.fat},${food.carbs}"
+      bw.write(line)
+      bw.newLine()
+    finally
+      bw.close()
 
   def readMealLog(path: String): List[FoodItem] =
     if !File(path).exists() then return List()

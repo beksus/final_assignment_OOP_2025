@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ProgressController" spacing="15" alignment="CENTER">
+    <MenuBar fx:id="menuBar">
+        <menus>
+            <Menu text="Home"><items><MenuItem text="Home" /></items></Menu>
+            <Menu text="Food Logging"><items><MenuItem text="Food Logging" /></items></Menu>
+            <Menu text="Activity"><items><MenuItem text="Activity" /></items></Menu>
+            <Menu text="Goals"><items><MenuItem text="Goals" /></items></Menu>
+            <Menu text="Progress"><items><MenuItem text="Progress" /></items></Menu>
+            <Menu text="Notifications"><items><MenuItem text="Notifications" /></items></Menu>
+            <Menu text="Profile"><items><MenuItem text="Profile" /></items></Menu>
+        </menus>
+    </MenuBar>
+    <Label text="Weight Progress" />
+    <LineChart fx:id="weightLineChart" prefWidth="300" prefHeight="200">
+        <xAxis>
+            <CategoryAxis label="Date" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Weight (kg)" />
+        </yAxis>
+    </LineChart>
+    <Label text="Calories Intake vs Burn" />
+    <AreaChart fx:id="caloriesTrendChart" prefWidth="300" prefHeight="200">
+        <xAxis>
+            <CategoryAxis label="Date" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Calories" />
+        </yAxis>
+    </AreaChart>
+    <Label text="Macronutrient Breakdown" />
+    <PieChart fx:id="macroBreakdownChart" prefWidth="300" prefHeight="200" />
+    <Label text="Achievements & Streaks" />
+    <HBox spacing="10">
+        <Label text="7 Day Streak" style="-fx-background-color: gold; -fx-padding: 5;" />
+        <Label text="Calorie Goal Met!" style="-fx-background-color: lightgreen; -fx-padding: 5;" />
+    </HBox>
+</VBox>

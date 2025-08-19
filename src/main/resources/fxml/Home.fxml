@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.HomeController" spacing="20" alignment="CENTER">
+    <HBox fx:id="navBar" spacing="10" alignment="CENTER">
+        <Button text="Home" fx:id="homeBtn" />
+        <Button text="Food Logging" fx:id="foodLoggingBtn" />
+        <Button text="Activity" fx:id="activityBtn" />
+        <Button text="Goals" fx:id="goalsBtn" />
+        <Button text="Progress" fx:id="progressBtn" />
+        <Button text="Notifications" fx:id="notificationsBtn" />
+        <Button text="Profile" fx:id="profileBtn" />
+    </HBox>
+    <ProgressBar fx:id="calorieProgress" prefWidth="300" />
+    <PieChart fx:id="macroPieChart" prefWidth="300" prefHeight="200" />
+    <HBox spacing="10">
+        <Button text="Quick Add Food" fx:id="quickAddFoodBtn" />
+        <Button text="Quick Add Activity" fx:id="quickAddActivityBtn" />
+        <Button text="Input Steps" fx:id="inputStepsBtn" />
+        <Button text="Input Exercise" fx:id="inputExerciseBtn" />
+        <Button text="Input Hydration" fx:id="inputHydrationBtn" />
+    </HBox>
+    <Label fx:id="stepsLabel" text="Steps: 8000" />
+    <Label fx:id="exerciseLabel" text="Exercise: 30 min" />
+    <Label fx:id="hydrationLabel" text="Hydration: 2L" />
+    <Label fx:id="quoteLabel" text="Stay strong!" />
+</VBox>

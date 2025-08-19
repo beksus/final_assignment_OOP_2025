@@ -1,4 +1,6 @@
-package models
+package controller
+
+import controller.FoodItem
 
 class MealLog:
   private var items: List[FoodItem] = List()

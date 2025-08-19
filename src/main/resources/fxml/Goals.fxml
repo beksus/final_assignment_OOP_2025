@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Slider?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.GoalsController" spacing="15" alignment="CENTER">
+    <HBox fx:id="navBar" spacing="10" alignment="CENTER">
+        <Button text="Home" fx:id="homeBtn" />
+        <Button text="Food Logging" fx:id="foodLoggingBtn" />
+        <Button text="Activity" fx:id="activityBtn" />
+        <Button text="Goals" fx:id="goalsBtn" />
+        <Button text="Progress" fx:id="progressBtn" />
+        <Button text="Notifications" fx:id="notificationsBtn" />
+        <Button text="Profile" fx:id="profileBtn" />
+    </HBox>
+    <Label text="Weight Goal" />
+    <ChoiceBox fx:id="weightGoalChoice" />
+    <Label text="Calorie Target Calculator" />
+    <TextField fx:id="calorieTargetField" promptText="Target Calories" />
+    <Label text="Macro Split" />
+    <HBox spacing="10">
+        <Label text="Carbs" />
+        <Slider fx:id="carbsSlider" min="0" max="100" value="50" />
+        <Label text="Protein" />
+        <Slider fx:id="proteinSlider" min="0" max="100" value="30" />
+        <Label text="Fat" />
+        <Slider fx:id="fatSlider" min="0" max="100" value="20" />
+    </HBox>
+    <Label text="Water Intake Goal" />
+    <TextField fx:id="waterGoalField" promptText="Liters" />
+    <Button text="Save" fx:id="saveGoalsBtn" />
+</VBox>

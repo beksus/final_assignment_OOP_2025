@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.FoodLoggingController" spacing="15" alignment="CENTER">
+    <MenuBar fx:id="menuBar">
+        <menus>
+            <Menu text="Home"><items><MenuItem text="Home" /></items></Menu>
+            <Menu text="Food Logging"><items><MenuItem text="Food Logging" /></items></Menu>
+            <Menu text="Activity"><items><MenuItem text="Activity" /></items></Menu>
+            <Menu text="Goals"><items><MenuItem text="Goals" /></items></Menu>
+            <Menu text="Progress"><items><MenuItem text="Progress" /></items></Menu>
+            <Menu text="Notifications"><items><MenuItem text="Notifications" /></items></Menu>
+            <Menu text="Profile"><items><MenuItem text="Profile" /></items></Menu>
+        </menus>
+    </MenuBar>
+    <TextField fx:id="searchBar" promptText="Search food..." />
+    <HBox spacing="10">
+        <Button text="Barcode Scan (Mock)" fx:id="barcodeBtn" />
+        <Button text="AR/VR Scan (Mock)" fx:id="arvrBtn" />
+    </HBox>
+    <TabPane fx:id="mealTabs">
+        <tabs>
+            <Tab text="Breakfast" />
+            <Tab text="Lunch" />
+            <Tab text="Dinner" />
+            <Tab text="Snacks" />
+        </tabs>
+    </TabPane>
+    <Spinner fx:id="servingSizeSpinner" min="1" max="10" initialValue="1" />
+    <Label text="Recently Used Foods & Recipes" />
+    <ListView fx:id="recentFoodsList" prefHeight="100" />
+</VBox>

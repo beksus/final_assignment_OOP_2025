@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ActivityTrackingController" spacing="15" alignment="CENTER">
+    <MenuBar fx:id="menuBar">
+        <menus>
+            <Menu text="Home"><items><MenuItem text="Home" /></items></Menu>
+            <Menu text="Food Logging"><items><MenuItem text="Food Logging" /></items></Menu>
+            <Menu text="Activity"><items><MenuItem text="Activity" /></items></Menu>
+            <Menu text="Goals"><items><MenuItem text="Goals" /></items></Menu>
+            <Menu text="Progress"><items><MenuItem text="Progress" /></items></Menu>
+            <Menu text="Notifications"><items><MenuItem text="Notifications" /></items></Menu>
+            <Menu text="Profile"><items><MenuItem text="Profile" /></items></Menu>
+        </menus>
+    </MenuBar>
+    <Label text="Add Workout" />
+    <TextField fx:id="workoutNameField" promptText="Workout name" />
+    <TextField fx:id="durationField" promptText="Duration (min)" />
+    <Button text="Add Workout" fx:id="addWorkoutBtn" />
+    <Button text="Sync Device (Mock)" fx:id="syncDeviceBtn" />
+    <Label fx:id="stepsLabel" text="Steps: 8000" />
+    <Label fx:id="distanceLabel" text="Distance: 5km" />
+    <Label fx:id="heartRateLabel" text="Heart Rate: 75 bpm" />
+    <Label fx:id="activeMinutesLabel" text="Active Minutes: 45" />
+    <BarChart fx:id="caloriesBurnedChart" prefWidth="300" prefHeight="200">
+        <xAxis>
+            <CategoryAxis label="Day" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Calories Burned" />
+        </yAxis>
+    </BarChart>
+</VBox>
