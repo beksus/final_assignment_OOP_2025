@@ -1,31 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.Label?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.HomeController" spacing="20" alignment="CENTER">
-    <HBox fx:id="navBar" spacing="10" alignment="CENTER">
-        <Button text="Home" fx:id="homeBtn" />
-        <Button text="Food Logging" fx:id="foodLoggingBtn" />
-        <Button text="Activity" fx:id="activityBtn" />
-        <Button text="Goals" fx:id="goalsBtn" />
-        <Button text="Progress" fx:id="progressBtn" />
-        <Button text="Notifications" fx:id="notificationsBtn" />
-        <Button text="Profile" fx:id="profileBtn" />
-    </HBox>
-    <ProgressBar fx:id="calorieProgress" prefWidth="300" />
-    <PieChart fx:id="macroPieChart" prefWidth="300" prefHeight="200" />
-    <HBox spacing="10">
-        <Button text="Quick Add Food" fx:id="quickAddFoodBtn" />
-        <Button text="Quick Add Activity" fx:id="quickAddActivityBtn" />
-        <Button text="Input Steps" fx:id="inputStepsBtn" />
-        <Button text="Input Exercise" fx:id="inputExerciseBtn" />
-        <Button text="Input Hydration" fx:id="inputHydrationBtn" />
-    </HBox>
-    <Label fx:id="stepsLabel" text="Steps: 8000" />
-    <Label fx:id="exerciseLabel" text="Exercise: 30 min" />
-    <Label fx:id="hydrationLabel" text="Hydration: 2L" />
-    <Label fx:id="quoteLabel" text="Stay strong!" />
-</VBox>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.HomeController" prefWidth="1200" prefHeight="760">
+    <top>
+        <HBox fx:id="navBar" spacing="8" alignment="CENTER_LEFT" styleClass="top-bar">
+            <Button text="Home" fx:id="homeBtn" styleClass="nav-btn selected"/>
+            <Button text="Food Logging" fx:id="foodLoggingBtn" styleClass="nav-btn"/>
+            <Button text="Activity" fx:id="activityBtn" styleClass="nav-btn"/>
+            <Button text="Goals" fx:id="goalsBtn" styleClass="nav-btn"/>
+            <Button text="Progress" fx:id="progressBtn" styleClass="nav-btn"/>
+            <Button text="Notifications" fx:id="notificationsBtn" styleClass="nav-btn"/>
+            <Button text="Profile" fx:id="profileBtn" styleClass="nav-btn"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="transparent-scroll">
+            <VBox spacing="24" alignment="TOP_CENTER" styleClass="content-container">
+                <HBox spacing="24">
+                    <VBox spacing="16" styleClass="card wide-card">
+                        <Label text="Daily Calories" styleClass="section-header"/>
+                        <ProgressBar fx:id="calorieProgress" prefWidth="420" styleClass="primary-progress"/>
+                        <HBox spacing="12" alignment="CENTER_LEFT">
+                            <Button text="Quick Add Food" fx:id="quickAddFoodBtn" styleClass="pill-btn primary-btn"/>
+                            <Button text="Quick Add Activity" fx:id="quickAddActivityBtn" styleClass="pill-btn secondary-btn"/>
+                        </HBox>
+                    </VBox>
+                    <VBox spacing="16" styleClass="card">
+                        <Label text="Today's Macros" styleClass="section-header"/>
+                        <PieChart fx:id="macroPieChart" prefWidth="360" prefHeight="240" styleClass="macro-chart"/>
+                    </VBox>
+                </HBox>
+                <HBox spacing="24">
+                    <VBox spacing="12" styleClass="card stat-card">
+                        <Label text="Steps" styleClass="mini-label"/>
+                        <Label fx:id="stepsLabel" text="Steps: 0" styleClass="stat-number"/>
+                        <Button text="Input Steps" fx:id="inputStepsBtn" styleClass="mini-btn"/>
+                    </VBox>
+                    <VBox spacing="12" styleClass="card stat-card">
+                        <Label text="Exercise" styleClass="mini-label"/>
+                        <Label fx:id="exerciseLabel" text="Exercise: 0" styleClass="stat-number"/>
+                        <Button text="Input Exercise" fx:id="inputExerciseBtn" styleClass="mini-btn"/>
+                    </VBox>
+                    <VBox spacing="12" styleClass="card stat-card">
+                        <Label text="Hydration" styleClass="mini-label"/>
+                        <Label fx:id="hydrationLabel" text="Hydration: 0L" styleClass="stat-number"/>
+                        <Button text="Input Hydration" fx:id="inputHydrationBtn" styleClass="mini-btn"/>
+                    </VBox>
+                    <VBox spacing="12" styleClass="card quote-card">
+                        <Label text="Motivational Quote" styleClass="mini-label"/>
+                        <Label fx:id="quoteLabel" wrapText="true" prefWidth="260" text="Stay strong!" styleClass="quote-text"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

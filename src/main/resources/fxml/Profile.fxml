@@ -1,35 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Button?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ProfileController" spacing="15" alignment="CENTER">
-    <MenuBar fx:id="menuBar">
-        <menus>
-            <Menu text="Home"><items><MenuItem text="Home" /></items></Menu>
-            <Menu text="Food Logging"><items><MenuItem text="Food Logging" /></items></Menu>
-            <Menu text="Activity"><items><MenuItem text="Activity" /></items></Menu>
-            <Menu text="Goals"><items><MenuItem text="Goals" /></items></Menu>
-            <Menu text="Progress"><items><MenuItem text="Progress" /></items></Menu>
-            <Menu text="Notifications"><items><MenuItem text="Notifications" /></items></Menu>
-            <Menu text="Profile"><items><MenuItem text="Profile" /></items></Menu>
-        </menus>
-    </MenuBar>
-    <Label text="User Details" />
-    <TextField fx:id="ageField" promptText="Age" />
-    <ChoiceBox fx:id="genderChoice" />
-    <TextField fx:id="heightField" promptText="Height (cm)" />
-    <TextField fx:id="weightField" promptText="Weight (kg)" />
-    <ChoiceBox fx:id="activityLevelChoice" />
-    <Label text="Device Integrations" />
-    <Button text="Google Fit (Mock)" fx:id="googleFitBtn" />
-    <Button text="Fitbit (Mock)" fx:id="fitbitBtn" />
-    <Label text="Privacy & Data Export" />
-    <Button text="Export Data (Mock)" fx:id="exportBtn" />
-    <Label text="Theme Selector" />
-    <ChoiceBox fx:id="themeChoice" />
-</VBox>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ProfileController" prefWidth="1000" prefHeight="700">
+    <top>
+        <HBox fx:id="navBar" spacing="8" alignment="CENTER_LEFT" styleClass="top-bar">
+            <Button text="Home" styleClass="nav-btn"/>
+            <Button text="Food Logging" styleClass="nav-btn"/>
+            <Button text="Activity" styleClass="nav-btn"/>
+            <Button text="Goals" styleClass="nav-btn"/>
+            <Button text="Progress" styleClass="nav-btn"/>
+            <Button text="Notifications" styleClass="nav-btn"/>
+            <Button text="Profile" styleClass="nav-btn selected"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="transparent-scroll">
+            <VBox spacing="24" styleClass="content-container">
+                <HBox spacing="24">
+                    <VBox spacing="14" styleClass="card">
+                        <Label text="User Details" styleClass="section-header"/>
+                        <TextField fx:id="ageField" promptText="Age"/>
+                        <ChoiceBox fx:id="genderChoice"/>
+                        <TextField fx:id="heightField" promptText="Height (cm)"/>
+                        <TextField fx:id="weightField" promptText="Weight (kg)"/>
+                        <ChoiceBox fx:id="activityLevelChoice"/>
+                        <Label text="Theme" styleClass="section-sub"/>
+                        <ChoiceBox fx:id="themeChoice"/>
+                        <Button text="Save Profile" fx:id="saveProfileBtn" styleClass="primary-btn pill-btn"/>
+                    </VBox>
+                    <VBox spacing="14" styleClass="card wide-card">
+                        <Label text="Integrations" styleClass="section-header"/>
+                        <Button text="Google Fit (Mock)" fx:id="googleFitBtn" styleClass="secondary-btn pill-btn"/>
+                        <Button text="Fitbit (Mock)" fx:id="fitbitBtn" styleClass="secondary-btn pill-btn"/>
+                        <Label text="Data Management" styleClass="section-sub"/>
+                        <HBox spacing="10">
+                            <Button text="Export Zip" fx:id="exportZipBtn" styleClass="mini-btn"/>
+                            <Button text="Import Zip" fx:id="importZipBtn" styleClass="mini-btn"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

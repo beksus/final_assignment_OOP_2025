@@ -13,7 +13,7 @@ import javafx.scene.control.TextInputDialog
 import java.util.Optional
 import scala.io.Source
 import java.util.Properties
-import java.io.{FileInputStream, FileOutputStream}
+import java.io.{File, FileInputStream, FileOutputStream}
 
 class HomeController {
   @FXML private var homeBtn: Button = _
@@ -38,6 +38,7 @@ class HomeController {
   private val mealLogPath = "src/main/resources/meal_log.csv"
   private val activityLogPath = "src/main/resources/activity_log.csv"
   private val userStatsPath = "src/main/resources/user_stats.conf"
+  private val goalsConfPath = "src/main/resources/goals.conf"
   private val statsProps = new Properties()
 
   @FXML def initialize(): Unit = {
@@ -104,6 +105,10 @@ class HomeController {
   }
 
   def updateMacrosAndProgress(): Unit = {
+    val calTarget = {
+      val p = FileUtil.loadProperties(goalsConfPath)
+      Option(p.getProperty("calorieTarget")).flatMap(s=>scala.util.Try(s.toDouble).toOption).getOrElse(2200.0)
+    }
     // Sum today's macros and calories
     val today = LocalDate.now().toString
     var totalCal = 0.0
@@ -113,17 +118,19 @@ class HomeController {
     if (new java.io.File(mealLogPath).exists()) {
       val source = Source.fromFile(mealLogPath)
       source.getLines().drop(1).foreach { line =>
-        val Array(date, _, cal, pro, fat, carb) = line.split(",").map(_.trim)
-        if (date == today) {
-          totalCal += cal.toDouble
-          totalPro += pro.toDouble
-          totalFat += fat.toDouble
-          totalCarb += carb.toDouble
+        val parts = line.split(",").map(_.trim)
+        if (parts.length==6 && parts(0)==today) {
+          scala.util.Try {
+            totalCal += parts(2).toDouble
+            totalPro += parts(3).toDouble
+            totalFat += parts(4).toDouble
+            totalCarb += parts(5).toDouble
+          }
         }
       }
       source.close()
     }
-    calorieProgress.setProgress(totalCal / 2200.0)
+    calorieProgress.setProgress(math.min(1.0, totalCal / calTarget))
     val pieData = FXCollections.observableArrayList[
       PieChart.Data](
       new PieChart.Data("Protein", totalPro),
@@ -131,7 +138,12 @@ class HomeController {
       new PieChart.Data("Fat", totalFat)
     )
     macroPieChart.setData(pieData)
+    quoteLabel.setText(fuelQuote(totalCal, calTarget))
   }
+
+  private def fuelQuote(cal: Double, target: Double): String = {
+    val pct = cal/target
+    if (pct < 0.33) "Strong start!" else if (pct < 0.66) "Keep fueling wisely." else if (pct < 0.95) "Almost there!" else if (pct <= 1.05) "Goal met nicely!" else "Slightly over—balance tomorrow."  }
 
   def inputSteps(): Unit = {
     val dialog = new TextInputDialog()

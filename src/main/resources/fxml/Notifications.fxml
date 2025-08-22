@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Spinner?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.NotificationsController" spacing="15" alignment="CENTER">
-    <HBox fx:id="navBar" spacing="10" alignment="CENTER">
-        <Button text="Home" fx:id="homeBtn" />
-        <Button text="Food Logging" fx:id="foodLoggingBtn" />
-        <Button text="Activity" fx:id="activityBtn" />
-        <Button text="Goals" fx:id="goalsBtn" />
-        <Button text="Progress" fx:id="progressBtn" />
-        <Button text="Notifications" fx:id="notificationsBtn" />
-        <Button text="Profile" fx:id="profileBtn" />
-    </HBox>
-    <Label text="Meal Reminders" />
-    <CheckBox fx:id="breakfastReminder" text="Breakfast" />
-    <CheckBox fx:id="lunchReminder" text="Lunch" />
-    <CheckBox fx:id="dinnerReminder" text="Dinner" />
-    <CheckBox fx:id="snacksReminder" text="Snacks" />
-    <Label text="Goal Alerts" />
-    <CheckBox fx:id="goalAlert" text="Goal Alert" />
-    <Label text="Custom Reminder Time" />
-    <Spinner fx:id="reminderTimeSpinner" min="0" max="23" initialValue="8" />
-    <Button text="Save" fx:id="saveNotificationsBtn" />
-</VBox>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.SpinnerValueFactory?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.NotificationsController" prefWidth="900" prefHeight="620">
+    <top>
+        <HBox fx:id="navBar" spacing="8" alignment="CENTER_LEFT" styleClass="top-bar">
+            <Button text="Home" fx:id="homeBtn" styleClass="nav-btn"/>
+            <Button text="Food Logging" fx:id="foodLoggingBtn" styleClass="nav-btn"/>
+            <Button text="Activity" fx:id="activityBtn" styleClass="nav-btn"/>
+            <Button text="Goals" fx:id="goalsBtn" styleClass="nav-btn"/>
+            <Button text="Progress" fx:id="progressBtn" styleClass="nav-btn"/>
+            <Button text="Notifications" fx:id="notificationsBtn" styleClass="nav-btn selected"/>
+            <Button text="Profile" fx:id="profileBtn" styleClass="nav-btn"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="22" styleClass="content-container">
+            <VBox spacing="10" styleClass="card">
+                <Label text="Meal Reminders" styleClass="section-header"/>
+                <FlowPane hgap="16" vgap="8">
+                    <CheckBox fx:id="breakfastReminder" text="Breakfast"/>
+                    <CheckBox fx:id="lunchReminder" text="Lunch"/>
+                    <CheckBox fx:id="dinnerReminder" text="Dinner"/>
+                    <CheckBox fx:id="snacksReminder" text="Snacks"/>
+                </FlowPane>
+            </VBox>
+            <VBox spacing="10" styleClass="card">
+                <Label text="Goal Alerts" styleClass="section-header"/>
+                <CheckBox fx:id="goalAlert" text="Calorie Goal Reached"/>
+            </VBox>
+            <VBox spacing="10" styleClass="card">
+                <Label text="Custom Reminder Hour (0-23)" styleClass="section-header"/>
+                <Spinner fx:id="reminderTimeSpinner" prefWidth="120">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="23" initialValue="8"/>
+                    </valueFactory>
+                </Spinner>
+                <Button text="Save" fx:id="saveNotificationsBtn" styleClass="primary-btn pill-btn"/>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

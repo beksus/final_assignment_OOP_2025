@@ -1,27 +1,32 @@
 package controller
 
-import javafx.fxml.FXMLLoader
-import javafx.scene.{Parent, Scene}
-import javafx.scene.Node
-import javafx.stage.Stage
+import javafx.scene.{Parent, Node}
+import javafx.scene.control.{Button, ToggleButton, MenuBar}
 
 object Nav {
-  private val pages = Map(
-    "Home" -> "/fxml/Home.fxml",
-    "Food Logging" -> "/fxml/FoodLogging.fxml",
-    "Activity" -> "/fxml/ActivityTracking.fxml",
-    "Goals" -> "/fxml/Goals.fxml",
-    "Progress" -> "/fxml/Progress.fxml",
-    "Notifications" -> "/fxml/Notifications.fxml",
-    "Profile" -> "/fxml/Profile.fxml"
-  )
+  /** Switch by delegating to MainApp to keep a single source of truth */
+  def switchFrom(node: Node, rawPage: String): Unit = {
+    val page = Option(rawPage).map(_.trim).filter(_.nonEmpty).getOrElse("Home")
+    MainApp.switchScene(page)
+  }
 
-  def switchFrom(node: Node, page: String): Unit = {
-    val loader = new FXMLLoader(getClass.getResource(pages(page)))
-    val root = loader.load[Parent]()
-    val stage = node.getScene.getWindow.asInstanceOf[Stage]
-    stage.setTitle(s"Calorie Tracker - $page")
-    stage.setScene(new Scene(root, 800, 600))
+  /** Wire navigation buttons (Button or ToggleButton) and optional menu bar */
+  def wireNav(root: Parent): Unit = {
+    val navBar = root.lookup("#navBar")
+    if (navBar != null) {
+      val children = navBar.asInstanceOf[javafx.scene.layout.HBox].getChildren
+      children.forEach {
+        case b: Button => b.setOnAction(_ => switchFrom(b, b.getText))
+        case tb: ToggleButton => tb.setOnAction(_ => switchFrom(tb, tb.getText))
+        case _ => ()
+      }
+    }
+    root.lookup("#menuBar") match {
+      case mb: MenuBar =>
+        mb.getMenus.forEach { menu =>
+          menu.getItems.forEach { item => item.setOnAction(_ => switchFrom(mb, item.getText)) }
+        }
+      case _ => ()
+    }
   }
 }
-

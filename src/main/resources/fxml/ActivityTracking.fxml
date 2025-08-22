@@ -2,33 +2,46 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.chart.*?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ActivityTrackingController" spacing="15" alignment="CENTER">
-    <MenuBar fx:id="menuBar">
-        <menus>
-            <Menu text="Home"><items><MenuItem text="Home" /></items></Menu>
-            <Menu text="Food Logging"><items><MenuItem text="Food Logging" /></items></Menu>
-            <Menu text="Activity"><items><MenuItem text="Activity" /></items></Menu>
-            <Menu text="Goals"><items><MenuItem text="Goals" /></items></Menu>
-            <Menu text="Progress"><items><MenuItem text="Progress" /></items></Menu>
-            <Menu text="Notifications"><items><MenuItem text="Notifications" /></items></Menu>
-            <Menu text="Profile"><items><MenuItem text="Profile" /></items></Menu>
-        </menus>
-    </MenuBar>
-    <Label text="Add Workout" />
-    <TextField fx:id="workoutNameField" promptText="Workout name" />
-    <TextField fx:id="durationField" promptText="Duration (min)" />
-    <Button text="Add Workout" fx:id="addWorkoutBtn" />
-    <Button text="Sync Device (Mock)" fx:id="syncDeviceBtn" />
-    <Label fx:id="stepsLabel" text="Steps: 8000" />
-    <Label fx:id="distanceLabel" text="Distance: 5km" />
-    <Label fx:id="heartRateLabel" text="Heart Rate: 75 bpm" />
-    <Label fx:id="activeMinutesLabel" text="Active Minutes: 45" />
-    <BarChart fx:id="caloriesBurnedChart" prefWidth="300" prefHeight="200">
-        <xAxis>
-            <CategoryAxis label="Day" />
-        </xAxis>
-        <yAxis>
-            <NumberAxis label="Calories Burned" />
-        </yAxis>
-    </BarChart>
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ActivityTrackingController" prefWidth="1200" prefHeight="760">
+    <top>
+        <HBox fx:id="navBar" spacing="8" alignment="CENTER_LEFT" styleClass="top-bar">
+            <Button text="Home" styleClass="nav-btn"/>
+            <Button text="Food Logging" styleClass="nav-btn"/>
+            <Button text="Activity" styleClass="nav-btn selected"/>
+            <Button text="Goals" styleClass="nav-btn"/>
+            <Button text="Progress" styleClass="nav-btn"/>
+            <Button text="Notifications" styleClass="nav-btn"/>
+            <Button text="Profile" styleClass="nav-btn"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="20" styleClass="content-container">
+            <HBox spacing="24" alignment="TOP_LEFT">
+                <VBox spacing="14" styleClass="card">
+                    <Label text="Add Workout" styleClass="section-header"/>
+                    <TextField fx:id="workoutNameField" promptText="Workout name" styleClass="wide-field"/>
+                    <TextField fx:id="durationField" promptText="Duration (min)" styleClass="wide-field"/>
+                    <HBox spacing="10">
+                        <Button text="Add" fx:id="addWorkoutBtn" styleClass="primary-btn pill-btn"/>
+                        <Button text="Sync Device" fx:id="syncDeviceBtn" styleClass="secondary-btn pill-btn"/>
+                    </HBox>
+                </VBox>
+                <VBox spacing="14" styleClass="card stat-grid">
+                    <Label text="Quick Stats" styleClass="section-header"/>
+                    <Label fx:id="stepsLabel" text="Steps: 0" styleClass="stat-line"/>
+                    <Label fx:id="distanceLabel" text="Distance: 0km" styleClass="stat-line"/>
+                    <Label fx:id="heartRateLabel" text="Heart Rate: 0 bpm" styleClass="stat-line"/>
+                    <Label fx:id="activeMinutesLabel" text="Active Minutes: 0" styleClass="stat-line"/>
+                </VBox>
+            </HBox>
+            <VBox spacing="12" styleClass="card wide-card">
+                <Label text="Calories Burned" styleClass="section-header"/>
+                <BarChart fx:id="caloriesBurnedChart" prefHeight="340" prefWidth="920">
+                    <xAxis><CategoryAxis label="Day"/></xAxis>
+                    <yAxis><NumberAxis label="Calories"/></yAxis>
+                </BarChart>
+            </VBox>
+        </VBox>
+    </center>
+</BorderPane>

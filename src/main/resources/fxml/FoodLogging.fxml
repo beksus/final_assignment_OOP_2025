@@ -1,32 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.FoodLoggingController" spacing="15" alignment="CENTER">
-    <MenuBar fx:id="menuBar">
-        <menus>
-            <Menu text="Home"><items><MenuItem text="Home" /></items></Menu>
-            <Menu text="Food Logging"><items><MenuItem text="Food Logging" /></items></Menu>
-            <Menu text="Activity"><items><MenuItem text="Activity" /></items></Menu>
-            <Menu text="Goals"><items><MenuItem text="Goals" /></items></Menu>
-            <Menu text="Progress"><items><MenuItem text="Progress" /></items></Menu>
-            <Menu text="Notifications"><items><MenuItem text="Notifications" /></items></Menu>
-            <Menu text="Profile"><items><MenuItem text="Profile" /></items></Menu>
-        </menus>
-    </MenuBar>
-    <TextField fx:id="searchBar" promptText="Search food..." />
-    <HBox spacing="10">
-        <Button text="Barcode Scan (Mock)" fx:id="barcodeBtn" />
-        <Button text="AR/VR Scan (Mock)" fx:id="arvrBtn" />
-    </HBox>
-    <TabPane fx:id="mealTabs">
-        <tabs>
-            <Tab text="Breakfast" />
-            <Tab text="Lunch" />
-            <Tab text="Dinner" />
-            <Tab text="Snacks" />
-        </tabs>
-    </TabPane>
-    <Spinner fx:id="servingSizeSpinner" min="1" max="10" initialValue="1" />
-    <Label text="Recently Used Foods & Recipes" />
-    <ListView fx:id="recentFoodsList" prefHeight="100" />
-</VBox>
+<?import javafx.scene.control.SpinnerValueFactory?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.FoodLoggingController" prefWidth="1200" prefHeight="760">
+    <top>
+        <HBox fx:id="navBar" spacing="8" alignment="CENTER_LEFT" styleClass="top-bar">
+            <Button text="Home" styleClass="nav-btn"/>
+            <Button text="Food Logging" styleClass="nav-btn selected"/>
+            <Button text="Activity" styleClass="nav-btn"/>
+            <Button text="Goals" styleClass="nav-btn"/>
+            <Button text="Progress" styleClass="nav-btn"/>
+            <Button text="Notifications" styleClass="nav-btn"/>
+            <Button text="Profile" styleClass="nav-btn"/>
+        </HBox>
+    </top>
+    <center>
+        <VBox spacing="18" styleClass="content-container">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="searchBar" promptText="Search food..." styleClass="search-field"/>
+                <Spinner fx:id="servingSizeSpinner" prefWidth="90">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="1" max="12" initialValue="1"/>
+                    </valueFactory>
+                </Spinner>
+                <Button text="Log Weight" fx:id="logWeightBtn" styleClass="pill-btn primary-outline"/>
+                <Button text="View Logged Items" fx:id="viewLogBtn" styleClass="pill-btn"/>
+                <Button text="Manage Meals" fx:id="manageMealsBtn" styleClass="tiny-btn"/>
+                <Button text="Manage Weights" fx:id="manageWeightsBtn" styleClass="tiny-btn"/>
+            </HBox>
+            <SplitPane dividerPositions="0.30">
+                <VBox spacing="14" styleClass="card side-pane">
+                    <Label text="Food Library" styleClass="section-header"/>
+                    <HBox spacing="8">
+                        <Button text="Barcode" fx:id="barcodeBtn" styleClass="mini-btn secondary-btn"/>
+                        <Button text="AR Scanner" fx:id="arvrBtn" styleClass="mini-btn accent-btn"/>
+                    </HBox>
+                    <Label text="Recent Foods" styleClass="mini-label"/>
+                    <ListView fx:id="recentFoodsList" prefHeight="480" styleClass="list"/>
+                </VBox>
+                <VBox spacing="18" styleClass="card wide-card">
+                    <Label text="Meals Logged" styleClass="section-header"/>
+                    <TableView fx:id="mealTable" editable="true" prefHeight="280" styleClass="elevated-table">
+                        <columns>
+                            <TableColumn fx:id="mealDateCol" text="Date" prefWidth="110"/>
+                            <TableColumn fx:id="mealNameCol" text="Food" prefWidth="180"/>
+                            <TableColumn fx:id="mealCalCol" text="Cal" prefWidth="70"/>
+                            <TableColumn fx:id="mealProCol" text="Protein" prefWidth="80"/>
+                            <TableColumn fx:id="mealFatCol" text="Fat" prefWidth="70"/>
+                            <TableColumn fx:id="mealCarbCol" text="Carbs" prefWidth="80"/>
+                        </columns>
+                    </TableView>
+                    <HBox spacing="10" alignment="CENTER_RIGHT">
+                        <Button text="Delete Selected" fx:id="deleteMealBtn" styleClass="danger-btn mini-btn"/>
+                        <Button text="Refresh" fx:id="refreshMealsBtn" styleClass="mini-btn"/>
+                    </HBox>
+                    <Separator/>
+                    <Label text="Weight Log" styleClass="section-header"/>
+                    <TableView fx:id="weightTable" editable="true" prefHeight="180" styleClass="elevated-table">
+                        <columns>
+                            <TableColumn fx:id="weightDateCol" text="Date" prefWidth="150"/>
+                            <TableColumn fx:id="weightValueCol" text="Weight (kg)" prefWidth="140"/>
+                        </columns>
+                    </TableView>
+                    <HBox spacing="10" alignment="CENTER_RIGHT">
+                        <Button text="Delete Selected" fx:id="deleteWeightBtn" styleClass="danger-btn mini-btn"/>
+                        <Button text="Refresh" fx:id="refreshWeightsBtn" styleClass="mini-btn"/>
+                    </HBox>
+                </VBox>
+            </SplitPane>
+        </VBox>
+    </center>
+</BorderPane>

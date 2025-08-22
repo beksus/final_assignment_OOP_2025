@@ -2,41 +2,51 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.chart.*?>
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ProgressController" spacing="15" alignment="CENTER">
-    <MenuBar fx:id="menuBar">
-        <menus>
-            <Menu text="Home"><items><MenuItem text="Home" /></items></Menu>
-            <Menu text="Food Logging"><items><MenuItem text="Food Logging" /></items></Menu>
-            <Menu text="Activity"><items><MenuItem text="Activity" /></items></Menu>
-            <Menu text="Goals"><items><MenuItem text="Goals" /></items></Menu>
-            <Menu text="Progress"><items><MenuItem text="Progress" /></items></Menu>
-            <Menu text="Notifications"><items><MenuItem text="Notifications" /></items></Menu>
-            <Menu text="Profile"><items><MenuItem text="Profile" /></items></Menu>
-        </menus>
-    </MenuBar>
-    <Label text="Weight Progress" />
-    <LineChart fx:id="weightLineChart" prefWidth="300" prefHeight="200">
-        <xAxis>
-            <CategoryAxis label="Date" />
-        </xAxis>
-        <yAxis>
-            <NumberAxis label="Weight (kg)" />
-        </yAxis>
-    </LineChart>
-    <Label text="Calories Intake vs Burn" />
-    <AreaChart fx:id="caloriesTrendChart" prefWidth="300" prefHeight="200">
-        <xAxis>
-            <CategoryAxis label="Date" />
-        </xAxis>
-        <yAxis>
-            <NumberAxis label="Calories" />
-        </yAxis>
-    </AreaChart>
-    <Label text="Macronutrient Breakdown" />
-    <PieChart fx:id="macroBreakdownChart" prefWidth="300" prefHeight="200" />
-    <Label text="Achievements & Streaks" />
-    <HBox spacing="10">
-        <Label text="7 Day Streak" style="-fx-background-color: gold; -fx-padding: 5;" />
-        <Label text="Calorie Goal Met!" style="-fx-background-color: lightgreen; -fx-padding: 5;" />
-    </HBox>
-</VBox>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controller.ProgressController" prefWidth="1200" prefHeight="760">
+    <top>
+        <HBox fx:id="navBar" spacing="8" alignment="CENTER_LEFT" styleClass="top-bar">
+            <Button text="Home" styleClass="nav-btn"/>
+            <Button text="Food Logging" styleClass="nav-btn"/>
+            <Button text="Activity" styleClass="nav-btn"/>
+            <Button text="Goals" styleClass="nav-btn"/>
+            <Button text="Progress" styleClass="nav-btn selected"/>
+            <Button text="Notifications" styleClass="nav-btn"/>
+            <Button text="Profile" styleClass="nav-btn"/>
+        </HBox>
+    </top>
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="transparent-scroll">
+            <VBox spacing="24" styleClass="content-container">
+                <HBox spacing="24">
+                    <VBox spacing="14" styleClass="card wide-card">
+                        <Label text="Weight Progress" styleClass="section-header"/>
+                        <LineChart fx:id="weightLineChart" prefHeight="260">
+                            <xAxis><CategoryAxis label="Date"/></xAxis>
+                            <yAxis><NumberAxis label="Weight (kg)"/></yAxis>
+                        </LineChart>
+                    </VBox>
+                    <VBox spacing="14" styleClass="card">
+                        <Label text="Macro Breakdown" styleClass="section-header"/>
+                        <PieChart fx:id="macroBreakdownChart" prefHeight="260"/>
+                    </VBox>
+                </HBox>
+                <VBox spacing="14" styleClass="card wide-card">
+                    <Label text="Calories Intake vs Burn" styleClass="section-header"/>
+                    <AreaChart fx:id="caloriesTrendChart" prefHeight="300">
+                        <xAxis><CategoryAxis label="Date"/></xAxis>
+                        <yAxis><NumberAxis label="Calories"/></yAxis>
+                    </AreaChart>
+                </VBox>
+                <VBox spacing="14" styleClass="card achievements-card">
+                    <Label text="Achievements & Streaks" styleClass="section-header"/>
+                    <HBox spacing="16">
+                        <Label fx:id="streakLabel" text="Streak: 0" styleClass="badge gold-badge"/>
+                        <Label fx:id="daysLoggedLabel" text="Logged Days: 0" styleClass="badge blue-badge"/>
+                        <Label fx:id="intakeGoalLabel" text="Intake Goal Days: 0" styleClass="badge green-badge"/>
+                    </HBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>
